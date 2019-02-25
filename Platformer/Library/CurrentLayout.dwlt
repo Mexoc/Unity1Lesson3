@@ -218,7 +218,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 48
+  controlID: 11
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 95
+  controlID: 12
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -342,14 +342,14 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Scripts
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\User\Desktop\Platformer
+  m_LastProjectPath: C:\ANDrey\GitHub_Repositories\Unity1Lesson3\Platformer
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 6e0d0000
     m_LastClickedID: 3438
-    m_ExpandedIDs: 0000000068090000ac0a0000020b0000980c0000582b000000ca9a3b
+    m_ExpandedIDs: 0000000068090000020b0000980c0000582b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -553,9 +553,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 3.0401983, y: 3.649307, z: -0.11468682}
+    m_Target: {x: -0.55465984, y: -0.15337558, z: 0.16210938}
     speed: 2
-    m_Value: {x: 3.0401983, y: 3.649307, z: -0.11468682}
+    m_Value: {x: -0.55465984, y: -0.15337558, z: 0.16210938}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -587,9 +587,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 26.514229
+    m_Target: 10.533707
     speed: 2
-    m_Value: 26.514229
+    m_Value: 10.533707
   m_Ortho:
     m_Target: 1
     speed: 2
