@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\fireball.cs" />
     <Compile Include="Assets\Scripts\hero.cs" />
     <Compile Include="Assets\Scripts\spawner.cs" />
+    <Compile Include="Assets\Scripts\sword.cs" />
     <None Include="Assets\Knight Files\Read Me.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/ANDrey/GitHub_Repositories/Unity1Lesson3/Platformer/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

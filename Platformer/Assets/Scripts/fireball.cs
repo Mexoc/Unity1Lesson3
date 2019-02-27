@@ -5,18 +5,26 @@ using UnityEngine;
 public class fireball : MonoBehaviour
 {
     public int damage = 20;
-    float speed = 0.5f;
+    float speed = 0.2f;
     public int direction = 1;
-
-    void Start()
-    {
-        
-    }
+    Vector3 shootDirection;
+    public GameObject _right;
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.right*speed*direction;
+        //flip = gameObject.GetComponent<SpriteRenderer>().flipY;
+        if (direction == -1)
+        {
+            shootDirection = new Vector3(- 2, 0.2f);                  
+            transform.position += shootDirection * speed;
+        }
+        if (direction == 1)
+        {
+            shootDirection = new Vector3(2, 0.2f);
+            transform.position += shootDirection * speed;
+        }
+
     }
 
     private void OnBecameInvisible()

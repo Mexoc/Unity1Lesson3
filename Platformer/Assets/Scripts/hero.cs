@@ -12,12 +12,20 @@ public class hero : MonoBehaviour
     private SpriteRenderer flip;
     public GameObject prefFireball;
     private Vector3 startPosition;
+    private Rigidbody2D _rigidbody;
+    private int forceJump;
+    public bool ground;
+    public Collision groundCol;
+    private bool fireballFlip;
 
     // Start is called before the first frame update
     void Start()
     {        
         flip = gameObject.GetComponent<SpriteRenderer>();
-        startPosition = new Vector3(gameObject.transform.position.x+1, gameObject.transform.position.y, 1);
+        startPosition = new Vector3(gameObject.transform.position.x - 1, gameObject.transform.position.y);  
+        _rigidbody = GetComponent<Rigidbody2D>();
+        forceJump = 8;
+        ground = true;        
     }
 
     public void Move()
@@ -26,20 +34,43 @@ public class hero : MonoBehaviour
     }
 
     public void Shoot()
-    {
-        GameObject temp = Instantiate(prefFireball, new Vector3(gameObject.transform.position.x+1, gameObject.transform.position.y-1), Quaternion.identity);
+    {        
+        GameObject temp;
+        if (right == 1)
+        {
+            temp = Instantiate(prefFireball, new Vector3(gameObject.transform.position.x + 1, gameObject.transform.position.y - 1), Quaternion.identity);
+        }
+        else
+        {            
+            temp = Instantiate(prefFireball, new Vector3(gameObject.transform.position.x - 1, gameObject.transform.position.y - 1), Quaternion.identity);
+            temp.GetComponent<SpriteRenderer>().flipX = true;
+        }
         temp.name = "fireball";
-        temp.GetComponent<fireball>().direction = (right == 1) ? 1: -1;
+        temp.GetComponent<fireball>().direction = (right == 1) ? 1: -1;        
     }    
 
-    public void Fall()
+    void Fall()
     {
         if (gameObject.transform.position.y < -5)
         {
             gameObject.transform.position = startPosition;
-            gameObject.transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
         }
             
+    }
+
+    void Jump()
+    {
+
+        _rigidbody.AddForce(Vector3.up * forceJump, ForceMode2D.Impulse);
+    }
+
+    void Die()
+    {
+        if (health <= 0)
+        {
+            gameObject.transform.position = startPosition;
+            health = 100;
+        }
     }
 
     // Update is called once per frame
@@ -66,6 +97,11 @@ public class hero : MonoBehaviour
         {
             Shoot();
         }
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Jump();
+        }
         Fall();
+        Die();
     }
 }
