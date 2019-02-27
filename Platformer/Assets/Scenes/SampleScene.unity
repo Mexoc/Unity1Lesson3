@@ -675,7 +675,7 @@ HingeJoint2D:
   m_ConnectedAnchor: {x: 0.025032362, y: -0.0063088736}
   m_UseMotor: 1
   m_Motor:
-    m_MotorSpeed: 50
+    m_MotorSpeed: 100
     m_MaximumMotorForce: 100000
   m_UseLimits: 0
   m_AngleLimits:
@@ -985,12 +985,12 @@ PrefabInstance:
     - target: {fileID: 2921316079079598656, guid: 2b0d080b6e5cd754b92dd6061199daa7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.77
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 2921316079079598656, guid: 2b0d080b6e5cd754b92dd6061199daa7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.76
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 2921316079079598656, guid: 2b0d080b6e5cd754b92dd6061199daa7,
         type: 3}
@@ -1040,12 +1040,17 @@ PrefabInstance:
     - target: {fileID: 2921316079079598656, guid: 2b0d080b6e5cd754b92dd6061199daa7,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.0490633
       objectReference: {fileID: 0}
     - target: {fileID: 2921316079079598656, guid: 2b0d080b6e5cd754b92dd6061199daa7,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.999108
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921316079079598656, guid: 2b0d080b6e5cd754b92dd6061199daa7,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.999108
       objectReference: {fileID: 0}
     - target: {fileID: 2921316079079598657, guid: 2b0d080b6e5cd754b92dd6061199daa7,
         type: 3}

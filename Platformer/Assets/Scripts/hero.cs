@@ -25,7 +25,6 @@ public class hero : MonoBehaviour
         startPosition = new Vector3(gameObject.transform.position.x - 1, gameObject.transform.position.y);  
         _rigidbody = GetComponent<Rigidbody2D>();
         forceJump = 8;
-        ground = true;        
     }
 
     public void Move()
@@ -73,6 +72,18 @@ public class hero : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "platform") 
+        ground = true;
+    }   
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "platform")
+        ground = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -97,7 +108,7 @@ public class hero : MonoBehaviour
         {
             Shoot();
         }
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W) && ground)
         {
             Jump();
         }
