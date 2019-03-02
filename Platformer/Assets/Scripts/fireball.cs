@@ -9,6 +9,7 @@ public class fireball : MonoBehaviour
     public int direction = 1;
     Vector3 shootDirection;
     public GameObject _right;
+    private CircleCollider2D enemyCol;
 
     // Update is called once per frame
     void Update()
@@ -37,6 +38,8 @@ public class fireball : MonoBehaviour
         if (collision.gameObject.tag == "enemy")
         {
             GameObject temp = collision.gameObject;
+            enemyCol = temp.GetComponent<CircleCollider2D>();
+            Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), enemyCol, false);
             temp.GetComponent<enemy>().health -= damage;
             Destroy(gameObject);
         }
