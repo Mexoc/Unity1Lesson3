@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 8181985202690495612}
   - component: {fileID: 2770841414585662191}
   - component: {fileID: 1643813576116139117}
-  m_Layer: 0
+  - component: {fileID: 6898547479997696699}
+  m_Layer: 8
   m_Name: enemy
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931372204515259800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.14, y: 2.6, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalPosition: {x: 5.172, y: 2.527, z: 0}
+  m_LocalScale: {x: 0.39281297, y: 0.381744, z: 0.99}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -102,7 +103,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &2770841414585662191
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -141,3 +142,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97513392c0543ee4c9dc513bbafe295c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  patrol: 0
+  angry: 0
+  X: 0
+  Y: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!58 &6898547479997696699
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931372204515259800}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1, y: 1}
+  serializedVersion: 2
+  m_Radius: 8
