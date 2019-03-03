@@ -17,6 +17,7 @@ public class hero : MonoBehaviour
     public bool ground;
     public Collision groundCol;
     private bool fireballFlip;
+    private float GUIX, GUIY;
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +74,11 @@ public class hero : MonoBehaviour
         }
     }
 
+    private void OnGUI()
+    {
+        GUI.Box(new Rect(GUIX, Screen.height-GUIY-30, 30,20), health.ToString());
+    }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "platform" || collision.gameObject.tag == "enemy")
@@ -88,7 +94,8 @@ public class hero : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
-        
+        GUIX = Camera.main.WorldToScreenPoint(transform.position).x;
+        GUIY = Camera.main.WorldToScreenPoint(transform.position).y;
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             {

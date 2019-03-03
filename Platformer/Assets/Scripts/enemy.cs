@@ -17,6 +17,8 @@ public class enemy : MonoBehaviour
     public int X;
     public int Y;
     public LayerMask mask;
+    public GameObject enemyFireball;
+    public bool shoot;
 
     private void Start()
     {
@@ -25,6 +27,7 @@ public class enemy : MonoBehaviour
         Y = -1;
         X = -1;
         direction = -1;
+        shoot = false;
     }    
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -75,8 +78,31 @@ public class enemy : MonoBehaviour
         else
         {
             Y = 0;
+            if (shoot == false && ray.collider.tag == "hero")
+            {                
+                StartCoroutine(EnemyShoot());
+                shoot = true;
+            }
         }
         
+    }
+
+    IEnumerator EnemyShoot()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            Instantiate(enemyFireball, gameObject.transform.position, Quaternion.identity);
+        }
+        enemyFireball.name = "enemyFireball";
+        if (direction == -1)
+        {
+            enemyFireball.GetComponent<fireball>().direction = -1;
+        }
+        else
+        {
+            enemyFireball.GetComponent<fireball>().direction = 1;
+        }
+        yield return new WaitForSeconds(1);
     }
    
     private void OnCollisionEnter2D(Collision2D collision)
