@@ -75,13 +75,13 @@ public class hero : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "platform")
+        if (collision.gameObject.tag == "platform" || collision.gameObject.tag == "enemy")
             ground = true;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "platform")
+        if (collision.gameObject.tag == "platform" || collision.gameObject.tag == "enemy")
             ground = false;
     }
 

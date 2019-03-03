@@ -39,7 +39,7 @@ public class fireball : MonoBehaviour
         {
             GameObject temp = collision.gameObject;
             enemyCol = temp.GetComponent<CircleCollider2D>();
-            Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), enemyCol, false);
+            //Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), temp.GetComponent<CircleCollider2D>(), true);
             temp.GetComponent<enemy>().health -= damage;
             Destroy(gameObject);
         }
