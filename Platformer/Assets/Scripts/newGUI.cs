@@ -5,23 +5,19 @@ using UnityEngine;
 public class newGUI : MonoBehaviour
 {
     public int health;
+    private Camera cam;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject temp;
-        temp = GameObject.FindGameObjectWithTag("hero");
-        health = temp.GetComponent<hero>().health;
-    }
-
-    private void OnGUI()
-    {
-            
+        player = GameObject.FindGameObjectWithTag("hero");
+        health = player.GetComponent<hero>().health;
+        cam = Camera.main;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
     }
 }

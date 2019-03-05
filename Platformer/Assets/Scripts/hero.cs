@@ -18,6 +18,10 @@ public class hero : MonoBehaviour
     public Collision groundCol;
     private bool fireballFlip;
     private float GUIX, GUIY;
+    public Animator anim;
+    public float horizontal;
+    private Camera main;
+    private int camSpeed = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +31,14 @@ public class hero : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         forceJump = 10;
         ground = true;
+        anim = GetComponent<Animator>();
+        horizontal = Input.GetAxis("Horizontal");
+        main = Camera.main;
     }
 
     public void Move()
     {
-        transform.position += new Vector3(Time.deltaTime*speed*right, 0);
+        transform.position += new Vector3(Time.deltaTime*speed*right, 0);        
     }
 
     public void Shoot()
@@ -63,6 +70,7 @@ public class hero : MonoBehaviour
     {
 
         _rigidbody.AddForce(Vector3.up * forceJump, ForceMode2D.Impulse);
+        
     }
 
     void Die()
@@ -94,24 +102,31 @@ public class hero : MonoBehaviour
     //Update is called once per frame
     void Update()
     {
+        float X = gameObject.transform.position.x;
+        float Y = gameObject.transform.position.y;
+        main.transform.position = Vector3.Lerp(main.transform.position, new Vector3(X, Y, main.transform.position.z), Time.deltaTime * camSpeed);
         GUIX = Camera.main.WorldToScreenPoint(transform.position).x;
         GUIY = Camera.main.WorldToScreenPoint(transform.position).y;
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Shoot();
+        } 
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
-            {
-                if (flip.flipX == true) flip.flipX = false;
-                if (right < 0) right *= -1;               
-                Move();
-            }
+            if (flip.flipX == true) flip.flipX = false;
+            if (right < 0) right *= -1;
+            Move();
+            anim.SetBool("Run", true);
         }
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))        
+        else
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
-            {
-                if (flip.flipX == false) flip.flipX = true;
-                if (right > 0) right *= -1;
-                Move();
-            }
+            if (flip.flipX == false) flip.flipX = true;
+            if (right > 0) right *= -1;
+            Move();
+            anim.SetBool("Run", true);
         }
+        else anim.SetBool("Run", false);
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
@@ -119,7 +134,10 @@ public class hero : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) && ground)
         {
             Jump();
-        }
+            anim.SetBool("Jump", true);
+        }   
+        else if (!ground) anim.SetBool("Jump", true);
+        else anim.SetBool("Jump", false);
         Fall();
         Die();
     }
