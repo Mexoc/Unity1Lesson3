@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
-  direction: 1
+  direction: -1
   _right: {fileID: 0}
 --- !u!50 &800746924339616882
 Rigidbody2D:

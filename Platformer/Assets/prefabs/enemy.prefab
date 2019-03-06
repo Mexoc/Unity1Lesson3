@@ -150,6 +150,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 0
+  enemyFireball: {fileID: 7570445935475607691, guid: 9ff6bece1ddd17e439ecd892321f64a3,
+    type: 3}
+  shoot: 0
 --- !u!58 &6898547479997696699
 CircleCollider2D:
   m_ObjectHideFlags: 0
