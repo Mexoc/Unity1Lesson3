@@ -65,6 +65,7 @@
     <Compile Include="Assets\Orc Warrior\Scripts\MouseController.cs" />
     <Compile Include="Assets\Scripts\enemy.cs" />
     <Compile Include="Assets\Scripts\enemyFireball.cs" />
+    <Compile Include="Assets\Scripts\finish.cs" />
     <Compile Include="Assets\Scripts\fireball.cs" />
     <Compile Include="Assets\Scripts\hero.cs" />
     <Compile Include="Assets\Scripts\newGUI.cs" />

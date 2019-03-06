@@ -6,7 +6,7 @@ public class enemy : MonoBehaviour
 {
     public int health = 100;
     private float speed = 1f;
-    private int direction;
+    public int direction;
     private Vector3 enemyPos;
     private Vector3 heroPos;
     private bool enemyFlip;
@@ -19,6 +19,9 @@ public class enemy : MonoBehaviour
     public LayerMask mask;
     public GameObject enemyFireball;
     public bool shoot;
+    public bool Right;
+    public int enemyFireballDirection;
+    int counter;
 
     private void Start()
     {
@@ -28,7 +31,66 @@ public class enemy : MonoBehaviour
         X = -1;
         direction = -1;
         shoot = false;
-    }    
+        Right = false;
+    }
+
+    private void Move()
+    {
+        gameObject.transform.position += new Vector3(Time.deltaTime * speed * direction, 0);
+    }
+
+    private void FixedUpdate()
+    {
+        RaycastHit2D ray = Physics2D.Raycast(gameObject.transform.position, new Vector2(X, Y), 4, mask);
+        Debug.DrawRay(gameObject.transform.position, new Vector2(X, Y), Color.blue);
+        Debug.Log(ray.collider);
+        if (patrol)
+        {
+            if (ray.collider)
+            {
+                Move();
+            }
+            else
+            {
+                Flip();
+            }
+        }
+        else
+        {
+            Y = 0;
+            if (ray.collider)
+            {
+                if (shoot == false && ray.collider.tag == "hero")
+                {
+                    shoot = true;
+                    StartCoroutine(EnemyShoot());
+                }
+            }
+        }
+    }
+
+    void Flip()
+    {
+        Right = !Right;
+        Vector2 sc = transform.localScale;
+        sc.x *= -1;
+        transform.localScale = sc;
+        X *= -1;
+        direction *= -1;
+    }
+
+    IEnumerator EnemyShoot()
+    {
+
+        for (int i = 0; i < 10; i++)
+        {
+            Instantiate(enemyFireball, gameObject.transform.position, Quaternion.identity);
+            enemyFireball.name = "enemyFireball";
+            enemyFireball.GetComponent<enemyFireball>().direction = enemyFireballDirection;
+            yield return new WaitForSeconds(1);
+        }
+        shoot = false;
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -37,84 +99,22 @@ public class enemy : MonoBehaviour
         heroPos = _hero.GetComponent<Transform>().position;
         if (collision.gameObject.tag == "hero")
         {
-            if (enemyPos.x >= heroPos.x)
+            if (enemyPos.x >= heroPos.x && Right)
             {
-                direction = -1;
-                GetComponent<SpriteRenderer>().flipX = true;
-            }            
-            else
+                Flip();
+                enemyFireballDirection = -1;
+            }
+            if (enemyPos.x <= heroPos.x && !Right)
             {
-                direction = 1;
-                GetComponent<SpriteRenderer>().flipX = false;
+                Flip();
+                enemyFireballDirection = 1;
             }
-        }
-    }
-
-    private void Move()
-    {
-        gameObject.transform.position += new Vector3(Time.deltaTime * speed * direction, 0);        
-    }
-
-    private void FixedUpdate()
-    {        
-        RaycastHit2D ray = Physics2D.Raycast(gameObject.transform.position, new Vector2(X, Y), 4, mask);
-        Debug.DrawRay(gameObject.transform.position, new Vector2(X, Y), Color.blue, 10);
-        Debug.Log(ray.collider);
-        if (patrol)
-        {                        
-            if (ray.collider)
-            {
-                if (X == 1) GetComponent<SpriteRenderer>().flipX = false;
-                else GetComponent<SpriteRenderer>().flipX = true;
-                Move();
-            }
-            else
-            {
-                X *= -1;
-                direction *= -1;
-                Move();
-            }
-        }
-        else
-        {
-            Y = 0;
-            if (shoot == false && ray.collider.tag == "hero")
-            {                
-                StartCoroutine(EnemyShoot());
-                shoot = true;
-            }
-        }
-        
-    }
-
-    IEnumerator EnemyShoot()
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            Instantiate(enemyFireball, gameObject.transform.position, Quaternion.identity);
-        }
-        enemyFireball.name = "enemyFireball";
-        if (direction == -1)
-        {
-            enemyFireball.GetComponent<fireball>().direction = -1;
-        }
-        else
-        {
-            enemyFireball.GetComponent<fireball>().direction = 1;
-        }
-        yield return new WaitForSeconds(1);
-    }
-   
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "hero")
-        {
             patrol = false;
             angry = true;
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "hero")
         {
@@ -127,6 +127,6 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0 || gameObject.transform.position.y <= -6) Destroy(gameObject);         
-    }    
-} 
+        if (health <= 0 || gameObject.transform.position.y <= -6) Destroy(gameObject);
+    }
+}
