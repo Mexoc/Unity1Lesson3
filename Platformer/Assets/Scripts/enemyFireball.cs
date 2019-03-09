@@ -6,18 +6,20 @@ public class enemyFireball : MonoBehaviour
 {
     public int damage = 20;
     float speed = 0.2f;
-    public int direction = 1;
+    public int direction;
     Vector3 shootDirection;
-    public GameObject _right;
     private CircleCollider2D heroCol;
 
     // Update is called once per frame
     void Update()
     {
-        //flip = gameObject.GetComponent<SpriteRenderer>().flipY;
+        Vector3 sc;
         if (direction == -1)
         {
             shootDirection = new Vector3(-2, 0.2f);
+            sc = transform.localScale;
+            sc.x *= -1;
+            transform.localScale = sc;
             transform.position += shootDirection * speed;
         }
         if (direction == 1)

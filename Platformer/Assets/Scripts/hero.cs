@@ -90,8 +90,8 @@ public class hero : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "platform" || collision.gameObject.tag == "enemy")
-            ground = true;
-    }
+            ground = true;        
+    }    
 
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -131,7 +131,7 @@ public class hero : MonoBehaviour
         {
             Shoot();
         }
-        if (Input.GetKeyDown(KeyCode.W) && ground)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && ground)
         {
             Jump();
             anim.SetBool("Jump", true);

@@ -7,6 +7,7 @@ TagManager:
   - platform
   - hero
   - enemy
+  - finish
   layers:
   - Default
   - TransparentFX
