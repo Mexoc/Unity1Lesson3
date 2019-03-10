@@ -8,6 +8,7 @@ TagManager:
   - hero
   - enemy
   - finish
+  - panel
   layers:
   - Default
   - TransparentFX

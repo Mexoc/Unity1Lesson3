@@ -30,7 +30,7 @@ public class spawner : MonoBehaviour
         if (currentEnemy == null)
         {
             CreateEnemy(prefEnemy[0]);
-            transform.position = new Vector2(Random.Range(-8f, 0f), 3.5f);
+            transform.position = new Vector2(gameObject.transform.position.x - Random.Range(-1f, 0f), 3.5f);
         }
     }
 }

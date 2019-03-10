@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class hero : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class hero : MonoBehaviour
     public float horizontal;
     private Camera main;
     private int camSpeed = 10;
+    public int Lives = 3;
+    public GameObject _panel;
+    private Interface _menu;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +38,8 @@ public class hero : MonoBehaviour
         anim = GetComponent<Animator>();
         horizontal = Input.GetAxis("Horizontal");
         main = Camera.main;
+        _panel = GameObject.FindGameObjectWithTag("panel");
+        _menu = FindObjectOfType<Interface>();
     }
 
     public void Move()
@@ -62,8 +68,10 @@ public class hero : MonoBehaviour
         if (gameObject.transform.position.y < -5)
         {
             gameObject.transform.position = startPosition;
-        }
-            
+            Lives--;
+            _panel.GetComponent<panel>().LivesMinus();
+            health = 100;
+        }           
     }
 
     void Jump()
@@ -78,7 +86,9 @@ public class hero : MonoBehaviour
         if (health <= 0)
         {
             gameObject.transform.position = startPosition;
-            health = 100;
+            Lives--;
+            _panel.GetComponent<panel>().LivesMinus();
+            health = 100;            
         }
     }
 
@@ -135,10 +145,19 @@ public class hero : MonoBehaviour
         {
             Jump();
             anim.SetBool("Jump", true);
-        }   
+        }
         else if (!ground) anim.SetBool("Jump", true);
-        else anim.SetBool("Jump", false);
+        else anim.SetBool("Jump", false);    
         Fall();
         Die();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {          
+            _menu.ShowMainMenu();            
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _menu.StartGame();
+        }
     }
 }

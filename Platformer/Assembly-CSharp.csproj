@@ -68,7 +68,10 @@
     <Compile Include="Assets\Scripts\finish.cs" />
     <Compile Include="Assets\Scripts\fireball.cs" />
     <Compile Include="Assets\Scripts\hero.cs" />
+    <Compile Include="Assets\Scripts\Interface.cs" />
+    <Compile Include="Assets\Scripts\menuController.cs" />
     <Compile Include="Assets\Scripts\newGUI.cs" />
+    <Compile Include="Assets\Scripts\panel.cs" />
     <Compile Include="Assets\Scripts\spawner.cs" />
     <Compile Include="Assets\Scripts\sword.cs" />
     <None Include="Assets\Knight Files\Read Me.txt" />

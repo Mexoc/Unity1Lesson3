@@ -20,7 +20,6 @@ public class enemy : MonoBehaviour
     public GameObject enemyFireball;
     public bool shoot;
     public bool Right;
-    public int enemyFireballDirection;
     int counter;
 
     private void Start()
@@ -82,11 +81,11 @@ public class enemy : MonoBehaviour
     IEnumerator EnemyShoot()
     {
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 3; i++)
         {
+            enemyFireball.GetComponent<enemyFireball>().direction = direction;
             Instantiate(enemyFireball, gameObject.transform.position, Quaternion.identity);
-            enemyFireball.name = "enemyFireball";
-            enemyFireball.GetComponent<enemyFireball>().direction = enemyFireballDirection;
+            enemyFireball.name = "enemyFireball";                 
             yield return new WaitForSeconds(1);
         }
         shoot = false;
@@ -99,15 +98,13 @@ public class enemy : MonoBehaviour
         heroPos = _hero.GetComponent<Transform>().position;
         if (collision.gameObject.tag == "hero")
         {
-            if (enemyPos.x >= heroPos.x && Right)
+            if (enemyPos.x > heroPos.x && Right)
             {
-                Flip();
-                enemyFireballDirection = -1;
+                Flip();                
             }
             if (enemyPos.x <= heroPos.x && !Right)
-            {
-                Flip();
-                enemyFireballDirection = 1;
+            {;
+                Flip();                
             }
             patrol = false;
             angry = true;
