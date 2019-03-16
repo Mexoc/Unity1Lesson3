@@ -37,7 +37,7 @@ public class Interface : MonoBehaviour
 
     public void Exit()
     {
-        
+        Application.Quit();
     }
 
     public void StartGame()

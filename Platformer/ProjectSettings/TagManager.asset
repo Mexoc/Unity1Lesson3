@@ -9,6 +9,9 @@ TagManager:
   - enemy
   - finish
   - panel
+  - mainMenu
+  - sword
+  - text
   layers:
   - Default
   - TransparentFX

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class hero : MonoBehaviour
 {
@@ -24,8 +25,11 @@ public class hero : MonoBehaviour
     private Camera main;
     private int camSpeed = 10;
     public int Lives = 3;
-    public GameObject _panel;
+    private GameObject _panel;
     private Interface _menu;
+    public int score;
+    public GameObject _text;
+    public Text text;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +44,9 @@ public class hero : MonoBehaviour
         main = Camera.main;
         _panel = GameObject.FindGameObjectWithTag("panel");
         _menu = FindObjectOfType<Interface>();
+        score = 0;
+        _text = GameObject.FindGameObjectWithTag("text");
+        text = _text.GetComponent<Text>();
     }
 
     public void Move()
@@ -88,13 +95,19 @@ public class hero : MonoBehaviour
             gameObject.transform.position = startPosition;
             Lives--;
             _panel.GetComponent<panel>().LivesMinus();
-            health = 100;            
+            health = 100;
+            score = 0;           
         }
     }
 
     private void OnGUI()
     {
         GUI.Box(new Rect(GUIX, Screen.height-GUIY-30, 30,20), health.ToString());
+        if (Lives == 0)
+        {
+            GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 100), "Game over");
+            SceneManager.LoadScene(0);
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -147,10 +160,7 @@ public class hero : MonoBehaviour
             anim.SetBool("Jump", true);
         }
         else if (!ground) anim.SetBool("Jump", true);
-        else anim.SetBool("Jump", false);    
-        Fall();
-        Die();
-
+        else anim.SetBool("Jump", false);           
         if (Input.GetKeyDown(KeyCode.Escape))
         {          
             _menu.ShowMainMenu();            
@@ -159,5 +169,8 @@ public class hero : MonoBehaviour
         {
             _menu.StartGame();
         }
+        Fall();
+        Die();
+        text.text = "Score: " + score;
     }
 }
