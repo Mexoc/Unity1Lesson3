@@ -7,24 +7,25 @@ public class enemyFireball : MonoBehaviour
     public int damage = 20;
     float speed = 0.2f;
     public int direction;
+    public GameObject _enemy;
     Vector3 shootDirection;
     private CircleCollider2D heroCol;
-
-    // Update is called once per frame
+    
     void Update()
-    {
+    {        
         Vector3 sc;
         if (direction == -1)
         {
-            shootDirection = new Vector3(-2, 0.2f);
-            sc = transform.localScale;
-            sc.x *= -1;
-            transform.localScale = sc;
+            shootDirection = new Vector3(-2, 0.2f);            
             transform.position += shootDirection * speed;
         }
         if (direction == 1)
         {
-            shootDirection = new Vector3(2, 0.2f);
+            //разворот спрайта
+            sc = transform.localScale;
+            sc.x *= -1;
+            transform.localScale = sc;
+            shootDirection = new Vector3(2, 0.2f);            
             transform.position += shootDirection * speed;
         }
 

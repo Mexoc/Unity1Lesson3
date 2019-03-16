@@ -7,6 +7,7 @@ public class spawner : MonoBehaviour
     public GameObject[] prefEnemy;
     public GameObject currentEnemy;
     private Random rnd;
+    public List<GameObject> enemyList= new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,7 @@ public class spawner : MonoBehaviour
     void CreateEnemy(GameObject Enemy)
     {
         currentEnemy = Instantiate(Enemy, transform.position, Quaternion.identity);
+        enemyList.Add(currentEnemy);
     }
 
     void Flip()
@@ -30,7 +32,7 @@ public class spawner : MonoBehaviour
         if (currentEnemy == null)
         {
             CreateEnemy(prefEnemy[0]);
-            transform.position = new Vector2(Random.Range(-8f, 0f), 3.5f);
+            transform.position = new Vector2(gameObject.transform.position.x - Random.Range(-1f, 0f), 3.5f);
         }
     }
 }

@@ -10,10 +10,22 @@ public class fireball : MonoBehaviour
     Vector3 shootDirection;
     public GameObject _right;
     private CircleCollider2D enemyCol;
+    //private GameObject _enemy;
+    private GameObject[] _enemy;
+    private GameObject _hero;
+    private GameObject[] _spawner;
+
+    private void Start()
+    {
+        //_enemy = GameObject.FindGameObjectWithTag("enemy");
+        _enemy = GameObject.FindGameObjectsWithTag("enemy");
+        _hero = GameObject.FindGameObjectWithTag("hero");
+    }
 
     // Update is called once per frame
     void Update()
     {
+        _enemy = GameObject.FindGameObjectsWithTag("enemy");
         //flip = gameObject.GetComponent<SpriteRenderer>().flipY;
         if (direction == -1)
         {
@@ -25,7 +37,6 @@ public class fireball : MonoBehaviour
             shootDirection = new Vector3(2, 0.2f);
             transform.position += shootDirection * speed;
         }
-
     }
 
     private void OnBecameInvisible()
@@ -39,9 +50,24 @@ public class fireball : MonoBehaviour
         {
             GameObject temp = collision.gameObject;
             enemyCol = temp.GetComponent<CircleCollider2D>();
-            //Physics2D.IgnoreCollision(gameObject.GetComponent<BoxCollider2D>(), temp.GetComponent<CircleCollider2D>(), true);
             temp.GetComponent<enemy>().health -= damage;
             Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "platform" || collision.gameObject.tag == "sword")
+            Destroy(gameObject);
+
+        //обновление счёта при уничтожении врага
+        
+        //if (collision.gameObject.tag == "enemy" && _enemy.GetComponent<enemy>().health == 0)
+        //{
+        //    _hero.GetComponent<hero>().score += 100;
+        //}  
+        for (int i = 0; i < _enemy.Length; i++)
+        {
+            if (collision.gameObject.tag == "enemy" && _enemy[i].GetComponent<enemy>().health == 0)
+            {
+                _hero.GetComponent<hero>().score += 100;
+            } 
         }
     }
 }

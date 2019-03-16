@@ -121,3 +121,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   direction: 1
+  _enemy: {fileID: 931372204515259800, guid: f25213cc2956f104eb0fd196e85dd565, type: 3}

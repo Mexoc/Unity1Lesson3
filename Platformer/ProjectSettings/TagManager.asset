@@ -8,6 +8,10 @@ TagManager:
   - hero
   - enemy
   - finish
+  - panel
+  - mainMenu
+  - sword
+  - text
   layers:
   - Default
   - TransparentFX
