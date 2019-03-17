@@ -8,6 +8,10 @@ public class Interface : MonoBehaviour
 {
     public GameObject MainMenu;
     public GameObject Settings;
+    public GameObject _start;
+    public GameObject _settings;
+    public GameObject _exit;
+    public GameObject _text;
 
     void Start()
     {
@@ -25,14 +29,22 @@ public class Interface : MonoBehaviour
 
     public void ShowSettings()
     {
-        MainMenu.SetActive(true);
+        //MainMenu.SetActive(true);
+        _start.SetActive(false);
+        _settings.SetActive(false);
+        _exit.SetActive(false);
         Settings.SetActive(true);
+        _text.SetActive(true);      
     }
 
     public void Back()
     {
-        MainMenu.SetActive(true);
+        _start.SetActive(true);
+        _settings.SetActive(true);
+        _exit.SetActive(true);
+        //MainMenu.SetActive(true);
         Settings.SetActive(false);
+        _text.SetActive(false);
     }
 
     public void Exit()
