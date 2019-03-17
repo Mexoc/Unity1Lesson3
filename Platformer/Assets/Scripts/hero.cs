@@ -150,7 +150,7 @@ public class hero : MonoBehaviour
             anim.SetBool("Run", true);
         }
         else anim.SetBool("Run", false);
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKey(KeyCode.LeftControl))
         {
             Shoot();
         }
@@ -171,6 +171,6 @@ public class hero : MonoBehaviour
         }
         Fall();
         Die();
-        text.text = "Score: " + score;
+        text.text = "Счёт: " + score;
     }
 }
