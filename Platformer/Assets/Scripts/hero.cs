@@ -150,7 +150,7 @@ public class hero : MonoBehaviour
             anim.SetBool("Run", true);
         }
         else anim.SetBool("Run", false);
-        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.LeftControl))
         {
             Shoot();
         }
