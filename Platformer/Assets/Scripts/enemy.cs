@@ -103,11 +103,19 @@ public class enemy : MonoBehaviour
                 Flip();                
             }
             if (enemyPos.x <= heroPos.x && !Right)
-            {;
+            {
                 Flip();                
             }
             patrol = false;
             angry = true;
+        }        
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "enemy")
+        {
+            Flip();
         }
     }
 
