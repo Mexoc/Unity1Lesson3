@@ -163,7 +163,7 @@ public class hero : MonoBehaviour
         else anim.SetBool("Jump", false);           
         if (Input.GetKeyDown(KeyCode.Escape))
         {          
-            _menu.ShowMainMenu();            
+            _menu.ShowMainMenu();                    
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
